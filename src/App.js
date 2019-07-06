@@ -13,10 +13,15 @@ class App extends Component {
 
   friendCheck = id => {
     // Loop through the checked array to see if the id of the clicked character has ALREADY been clicked
-    //
+    for (i = 0 ; i < this.state.checked.length ; i++) {
+      if (this.state.checked[i] === id) {
+        newGame();
+        break;
+      }
+    }
 
+    goodGuess();
 
-    
     //When a character card is clicked, its id is added to the state.checked array.
     this.setState({ checked: [...this.state.checked, id] })
     console.log(this.state.checked)
