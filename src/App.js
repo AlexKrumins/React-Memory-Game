@@ -42,7 +42,6 @@ class App extends Component {
         topscore={this.state.topscore}
         />
         {this.state.friends.map(friend => (
-        // Map over this.state.friends and render a FriendCard component for each friend object
           <FriendCard
             friendCheck={this.friendCheck}
             id={friend.id}
