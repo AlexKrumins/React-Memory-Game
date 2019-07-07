@@ -19,9 +19,12 @@ class App extends Component {
     // Loop through the checked array to see if the id of the clicked character has ALREADY been clicked
     this.state.checked.map(guess => {
       if (guess === id) {
+        alert ("game over")
         let score = 0
         let topscore = this.state.score
         this.setState({ topscore , score })
+        this.setState({ checked: []})
+        return
       }
     })
     //This function will increase the user's score and 
