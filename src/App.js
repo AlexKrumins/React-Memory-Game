@@ -18,17 +18,20 @@ class App extends Component {
   friendCheck = id => {
     // Loop through the checked array to see if the id of the clicked character has ALREADY been clicked
     this.state.checked.map(guess => {
-      if (guess === id) return console.log("newGame()")
+      if (guess === id) {
+        let score = 0
+        let topscore = this.state.score
+        this.setState({ topscore , score })
+      }
     })
     //This function will increase the user's score and 
     // when a character card is clicked, its id is added to the state.checked array.
     let score = this.state.score + 1
     this.setState({ score })
     this.setState({ checked: [...this.state.checked, id] })
-    console.log(this.state.checked)
-    console.log(this.state.score)
   };
   
+
 
   render() {
     return (
@@ -44,10 +47,7 @@ class App extends Component {
             friendCheck={this.friendCheck}
             id={friend.id}
             key={friend.id}
-            name={friend.name}
             image={friend.image}
-            occupation={friend.occupation}
-            location={friend.location}
           />
         ))}
       </Wrapper>
