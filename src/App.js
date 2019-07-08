@@ -5,8 +5,17 @@ import Title from "./components/Title";
 import friends from "./friends.json";
 import ScoreBoard from "./components/ScoreBoard";
 
+function shuffleArray(array) {
+  for (let i = array.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    const temp = array[i];
+    array[i] = array[j];
+    array[j] = temp;
+  }
+  return array;
+}
+
 class App extends Component {
-  // Setting this.state.friends to the friends json array
   state = {
     friends,
     checked: [],
@@ -22,8 +31,11 @@ class App extends Component {
         alert ("game over")
         let score = 0
         let topscore = this.state.score
-        this.setState({ topscore , score })
-        this.setState({ checked: []})
+        let checked = []
+        if (this.state.topscore < topscore) {
+          this.setState({ topscore })
+        }
+        this.setState({ checked, score })
         return
       }
     })
@@ -37,6 +49,7 @@ class App extends Component {
 
 
   render() {
+    const shuffledFriends = shuffleArray(this.state.friends)
     return (
       <Wrapper>
         <Title>Friends List</Title>
@@ -44,7 +57,7 @@ class App extends Component {
         score={this.state.score}
         topscore={this.state.topscore}
         />
-        {this.state.friends.map(friend => (
+        {shuffledFriends.map(friend => (
           <FriendCard
             friendCheck={this.friendCheck}
             id={friend.id}
