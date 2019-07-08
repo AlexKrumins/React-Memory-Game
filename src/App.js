@@ -18,35 +18,35 @@ function shuffleArray(array) {
 class App extends Component {
   state = {
     friends,
-    checked: [],
     score : 0,
     topscore : 0
   };
   
+  newGame = () => {
+    alert (`IT'S OVER!\nYour Score: ${this.state.score}`)
+    if (this.state.topscore < this.state.score) {
+      this.setState({ topscore: this.state.score })
+    };
+    this.setState({score: 0});
+    this.state.friends.forEach(friend => {
+      friend.clicks = 0;
+    });
+    return true;
+  }
   
   friendCheck = id => {
-    // Loop through the checked array to see if the id of the clicked character has ALREADY been clicked
     this.state.friends.find((j, k) => {
       if (j.id === id) {
-        if (friends[k].count === 0) {
-          friends[k].count = friends[k].count + 1;
+        if (friends[k].clicks === 0) {
+          friends[k].clicks = friends[k].clicks + 1;
           let score = this.state.score + 1
           this.setState({ score })
+          return true;
+        } else {
+          this.newGame();
         }
-        alert ("game over")
-        let score = 0
-        let topscore = this.state.score
-        let checked = []
-        if (this.state.topscore < topscore) {
-          this.setState({ topscore })
-        }
-        this.setState({ checked, score })
-        return
       }
-    })
-    //This function will increase the user's score and 
-    // when a character card is clicked, its id is added to the state.checked array.
-    this.setState({ checked: [...this.state.checked, id] })
+    });
   };
   
 
