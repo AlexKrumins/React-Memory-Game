@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import FriendCard from "./components/FriendCard";
 import Wrapper from "./components/Wrapper";
 import Title from "./components/Title";
+import Instructions from "./components/Instructions";
 import friends from "./friends.json";
 import ScoreBoard from "./components/ScoreBoard";
 
@@ -59,7 +60,8 @@ class App extends Component {
     const shuffledFriends = shuffleArray(this.state.friends)
     return (
       <Wrapper>
-        <Title>Friends List</Title>
+        <Title>Test Your Memory</Title>
+        <Instructions>Click each and every picture once (and only once). See if you can get all twelve.</Instructions>
         <ScoreBoard 
         score={this.state.score}
         topscore={this.state.topscore}
