@@ -23,7 +23,11 @@ class App extends Component {
   };
   
   newGame = () => {
-    alert (`IT'S OVER!\nYour Score: ${this.state.score}`)
+    if (this.state.score === 12) {
+      alert (`Congratulations! You got a perfect score. That's so good.`);
+    }else{
+      alert (`IT'S OVER!\nYour Score: ${this.state.score}`)
+    }
     if (this.state.topscore < this.state.score) {
       this.setState({ topscore: this.state.score })
     };
